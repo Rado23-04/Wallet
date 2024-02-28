@@ -3,7 +3,9 @@ package com.wallet.app.Controller;
 import com.wallet.app.Model.Category_transaction;
 import com.wallet.app.Model.Currency;
 import com.wallet.app.Service.Category_transactionService;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
@@ -18,5 +20,10 @@ public class Category_TransactionController {
     @GetMapping("/category")
     public List<Category_transaction> all() throws SQLException {
         return categoryTransactionService.allCategoryTransaction();
+    }
+    @DeleteMapping("/delete_categoryTransaction/{id}")
+    public String deleteClient(@PathVariable int id) throws SQLException {
+        categoryTransactionService.deleteCategoryTransaction(id);
+        return "Category transaction successfully deleted ";
     }
 }

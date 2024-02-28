@@ -2,7 +2,9 @@ package com.wallet.app.Controller;
 
 import com.wallet.app.Model.Currency;
 import com.wallet.app.Service.CurrencyService;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
@@ -16,5 +18,10 @@ public class CurrencyController {
     @GetMapping("/currency")
     public List<Currency> all() throws SQLException {
         return currencyService.allCurrency();
+    }
+    @DeleteMapping("/delete_currency/{id}")
+    public String deleteClient(@PathVariable int id) throws SQLException {
+        currencyService.deleteCurrency(id);
+        return "Currency successfully deleted ";
     }
 }

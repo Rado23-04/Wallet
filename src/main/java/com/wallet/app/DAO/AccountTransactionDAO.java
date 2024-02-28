@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.wallet.app.ConnectionDatabase.ConfigurationDatabase.getConnection;
+
 @Repository
 public class AccountTransactionDAO implements GenericDAO<AccountTransaction> {
     @Override
@@ -52,7 +55,13 @@ public class AccountTransactionDAO implements GenericDAO<AccountTransaction> {
 
     @Override
     public void delete(int id) {
-
+        String sql = "DELETE FROM \"Account_transaction\" where id = ?;";
+        try(PreparedStatement statement = getConnection().prepareStatement(sql)){
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

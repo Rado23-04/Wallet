@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.wallet.app.ConnectionDatabase.ConfigurationDatabase.getConnection;
+
 @Repository
 public class CurrencyDAO implements GenericDAO<Currency> {
     @Override
@@ -50,7 +53,13 @@ public class CurrencyDAO implements GenericDAO<Currency> {
 
     @Override
     public  void delete(int id) {
-
+        String sql = "DELETE FROM \"Currency\" where id = ?;";
+        try(PreparedStatement statement = getConnection().prepareStatement(sql)){
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

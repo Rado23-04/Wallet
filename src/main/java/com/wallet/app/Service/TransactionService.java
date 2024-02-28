@@ -16,4 +16,7 @@ public class TransactionService {
     public List<Transaction> allTransaction() throws SQLException {
         return transactionDAO.findAll();
     }
+    public void deleteTransaction(int id) throws SQLException {
+        transactionDAO.delete(id);
+    }
 }

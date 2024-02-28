@@ -15,4 +15,7 @@ public class CurrencyService {
     public List<Currency> allCurrency() throws SQLException {
         return currencyDAO.findAll();
     }
+    public void deleteCurrency(int id) throws SQLException {
+        currencyDAO.delete(id);
+    }
 }

@@ -16,4 +16,7 @@ public class Category_transactionService {
     public List<Category_transaction> allCategoryTransaction() throws SQLException {
         return categoryTransactionDAO.findAll();
     }
+    public void deleteCategoryTransaction(int id) throws SQLException {
+        categoryTransactionDAO.delete(id);
+    }
 }

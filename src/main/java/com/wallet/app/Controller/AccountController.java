@@ -24,9 +24,9 @@ public class AccountController {
     public List<Account> all() throws SQLException {
         return accountService.allAccount();
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete_account/{id}")
     public String deleteClient(@PathVariable int id) throws SQLException {
         accountService.deleteAccount(id);
-        return "Client successfully deleted ";
+        return "Account successfully deleted ";
     }
 }
