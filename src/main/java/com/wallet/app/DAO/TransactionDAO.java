@@ -1,14 +1,48 @@
 package com.wallet.app.DAO;
 
+import com.wallet.app.ConnectionDatabase.ConfigurationDatabase;
 import com.wallet.app.Generic.GenericDAO;
+import com.wallet.app.Model.Account;
 import com.wallet.app.Model.Transaction;
+import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class TransactionDAO implements GenericDAO<Transaction> {
     @Override
     public List<Transaction> findAll() {
-        return null;
+        List<Transaction> transactions = new ArrayList<>();
+
+        String sql = "SELECT * FROM \"Transaction\";";
+
+
+        try (Connection connection = ConfigurationDatabase.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Transaction transaction = new Transaction();
+                transaction.setId(resultSet.getInt("id"));
+                transaction.setLabel(resultSet.getString("label"));
+                transaction.setAmount(resultSet.getDouble("amount"));
+                transaction.setDateTime(resultSet.getTimestamp("date_time"));
+                transaction.setType(resultSet.getString("type"));
+                transaction.setIdAccount(resultSet.getInt("id_account"));
+                transaction.setIdCategory(resultSet.getInt("id_category"));
+
+                transactions.add(transaction);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return transactions;
     }
 
     @Override
