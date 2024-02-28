@@ -51,7 +51,9 @@ public class AccountTransactionDAO implements GenericDAO<AccountTransaction> {
     }
 
     @Override
-    public AccountTransaction delete(AccountTransaction toDelete) {
-        return null;
+    public void delete(int id) {
+
     }
+
+
 }

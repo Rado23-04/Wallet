@@ -2,7 +2,6 @@ package com.wallet.app.DAO;
 
 import com.wallet.app.ConnectionDatabase.ConfigurationDatabase;
 import com.wallet.app.Generic.GenericDAO;
-import com.wallet.app.Model.Account;
 import com.wallet.app.Model.Category_transaction;
 import org.springframework.stereotype.Repository;
 
@@ -52,7 +51,9 @@ public class Category_transactionDAO implements GenericDAO<Category_transaction>
     }
 
     @Override
-    public Category_transaction delete(Category_transaction toDelete) {
-        return null;
+    public void delete(int id) {
+
     }
+
+
 }

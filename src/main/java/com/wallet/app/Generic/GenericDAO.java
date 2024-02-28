@@ -6,5 +6,7 @@ public interface GenericDAO<Z> {
     List<Z> findAll();
     List<Z> saveAll(List<Z> toSave);
     Z save(Z toSave);
-    Z delete(Z toDelete);
+
+    <Z> void delete(int id);
+
 }

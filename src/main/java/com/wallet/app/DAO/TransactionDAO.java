@@ -56,7 +56,8 @@ public class TransactionDAO implements GenericDAO<Transaction> {
     }
 
     @Override
-    public Transaction delete(Transaction toDelete) {
-        return null;
+    public <Z> void delete(int id) {
+
     }
+
 }

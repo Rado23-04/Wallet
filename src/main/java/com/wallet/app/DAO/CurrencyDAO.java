@@ -49,7 +49,8 @@ public class CurrencyDAO implements GenericDAO<Currency> {
     }
 
     @Override
-    public Currency delete(Currency toDelete) {
-        return null;
+    public  void delete(int id) {
+
     }
+
 }
