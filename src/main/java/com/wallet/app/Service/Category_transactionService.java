@@ -1,6 +1,7 @@
 package com.wallet.app.Service;
 
 import com.wallet.app.DAO.Category_transactionDAO;
+import com.wallet.app.Model.AccountTransaction;
 import com.wallet.app.Model.Category_transaction;
 import com.wallet.app.Model.Currency;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,9 @@ public class Category_transactionService {
     }
     public void deleteCategoryTransaction(int id) throws SQLException {
         categoryTransactionDAO.delete(id);
+    }
+    public Category_transaction insert(Category_transaction toInsert){
+        categoryTransactionDAO.save(toInsert);
+        return toInsert;
     }
 }

@@ -1,11 +1,9 @@
 package com.wallet.app.Controller;
 
+import com.wallet.app.Model.Account;
 import com.wallet.app.Model.AccountTransaction;
 import com.wallet.app.Service.AccountTransactionService;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,5 +22,9 @@ public class AccountTransactionController {
     public String deleteClient(@PathVariable int id) throws SQLException {
         accountTransactionService.deleteAccountTransaction(id);
         return "Account transaction successfully deleted ";
+    }
+    @PostMapping("/insert_AccountTransaction")
+    public AccountTransaction insertClient(@RequestBody AccountTransaction toInsert){
+        return accountTransactionService.insert(toInsert);
     }
 }

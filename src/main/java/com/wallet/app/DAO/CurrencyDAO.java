@@ -48,6 +48,16 @@ public class CurrencyDAO implements GenericDAO<Currency> {
 
     @Override
     public Currency save(Currency toSave) {
+        String sql = "INSERT INTO  \"Currency\" (name, code)"+
+                "VALUES (?, ?);";
+        try (PreparedStatement statement = getConnection().prepareStatement(sql)){
+            statement.setString(1,toSave.getName());
+            statement.setString(2,toSave.getCode());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 

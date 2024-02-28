@@ -50,6 +50,15 @@ public class AccountTransactionDAO implements GenericDAO<AccountTransaction> {
 
     @Override
     public AccountTransaction save(AccountTransaction toSave) {
+        String sql = "INSERT INTO  \"Account_transaction\" (id_transaction, id_account)"+
+                "VALUES (?, ?);";
+        try (PreparedStatement statement = getConnection().prepareStatement(sql)){
+            statement.setInt(1,toSave.getId_transaction());
+            statement.setInt(2,toSave.getId_account());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 

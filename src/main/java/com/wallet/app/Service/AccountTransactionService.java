@@ -1,6 +1,7 @@
 package com.wallet.app.Service;
 
 import com.wallet.app.DAO.AccountTransactionDAO;
+import com.wallet.app.Model.Account;
 import com.wallet.app.Model.AccountTransaction;
 import com.wallet.app.Model.Currency;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,8 @@ public class AccountTransactionService {
     public void deleteAccountTransaction(int id) throws SQLException {
         accountTransactionDAO.delete(id);
     }
-
+    public AccountTransaction insert(AccountTransaction toInsert){
+        accountTransactionDAO.save(toInsert);
+        return toInsert;
+    }
 }

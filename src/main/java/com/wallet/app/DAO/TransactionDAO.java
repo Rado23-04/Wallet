@@ -55,6 +55,19 @@ public class TransactionDAO implements GenericDAO<Transaction> {
 
     @Override
     public Transaction save(Transaction toSave) {
+        String sql = "INSERT INTO  \"Transaction\" (label, amount, type, id_account,id_category)"+
+                "VALUES (?, ?, ?, ?, ?);";
+        try (PreparedStatement statement = getConnection().prepareStatement(sql)){
+            statement.setString(1,toSave.getLabel());
+            statement.setDouble(2,toSave.getAmount());
+            statement.setString(3,toSave.getType());
+            statement.setInt(4,toSave.getIdAccount());
+            statement.setInt(5,toSave.getIdCategory());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 

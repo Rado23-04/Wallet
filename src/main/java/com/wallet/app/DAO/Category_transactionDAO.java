@@ -50,6 +50,15 @@ public class Category_transactionDAO implements GenericDAO<Category_transaction>
 
     @Override
     public Category_transaction save(Category_transaction toSave) {
+        String sql = "INSERT INTO  \"Transaction_category\" (name, items_list)"+
+                "VALUES (?, ?);";
+        try (PreparedStatement statement = getConnection().prepareStatement(sql)){
+            statement.setString(1,toSave.getName());
+            statement.setString(2,toSave.getItemList());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
