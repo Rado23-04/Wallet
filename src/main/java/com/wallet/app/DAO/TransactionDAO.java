@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.wallet.app.ConnectionDatabase.ConfigurationDatabase.getConnection;
+
 @Repository
 public class TransactionDAO implements GenericDAO<Transaction> {
     @Override
@@ -52,11 +55,31 @@ public class TransactionDAO implements GenericDAO<Transaction> {
 
     @Override
     public Transaction save(Transaction toSave) {
+        String sql = "INSERT INTO  \"Transaction\" (label, amount, type, id_account,id_category)"+
+                "VALUES (?, ?, ?, ?, ?);";
+        try (PreparedStatement statement = getConnection().prepareStatement(sql)){
+            statement.setString(1,toSave.getLabel());
+            statement.setDouble(2,toSave.getAmount());
+            statement.setString(3,toSave.getType());
+            statement.setInt(4,toSave.getIdAccount());
+            statement.setInt(5,toSave.getIdCategory());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
     @Override
-    public Transaction delete(Transaction toDelete) {
-        return null;
+    public void delete(int id) {
+        String sql = "DELETE FROM \"Transaction\" where id = ?;";
+        try(PreparedStatement statement = getConnection().prepareStatement(sql)){
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 }

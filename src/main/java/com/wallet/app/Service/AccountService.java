@@ -16,4 +16,11 @@ public class AccountService {
     public List<Account> allAccount() throws SQLException {
         return accountDAO.findAll();
     }
+    public void deleteAccount(int id) throws SQLException {
+        accountDAO.delete(id);
+    }
+    public Account insert(Account toInsert){
+        accountDAO.save(toInsert);
+        return toInsert;
+    }
 }
