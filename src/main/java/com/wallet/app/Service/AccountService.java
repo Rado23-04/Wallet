@@ -19,7 +19,7 @@ public class AccountService {
     public void deleteAccount(int id) throws SQLException {
         accountDAO.delete(id);
     }
-    public Account insert(Account toInsert){
+    public Account insert(Account toInsert) throws SQLException {
         accountDAO.save(toInsert);
         return toInsert;
     }
