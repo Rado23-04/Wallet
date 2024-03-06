@@ -1,6 +1,7 @@
 package com.wallet.app.Service.Function;
 
 import com.wallet.app.Model.Transaction;
+import org.springframework.stereotype.Service;
 
 
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.wallet.app.ConnectionDatabase.ConfigurationDatabase.getConnection;
-
+@Service
 public class History {
     public List<Transaction> TransactionHistory(Transaction transaction){
         List<Transaction> TransactionHistory = new ArrayList<>();
