@@ -50,7 +50,7 @@ public class AccountDAO implements GenericDAO<Account> {
     }
 
     @Override
-    public Account save(Account toSave) {
+    public Account save(Account toSave) throws SQLException {
         String sql = "INSERT INTO  \"Account\" (name, pay, id_currency, type)"+
                 "VALUES (?, ?, ?, ?);";
         try (PreparedStatement statement = getConnection().prepareStatement(sql)){
@@ -75,6 +75,7 @@ public class AccountDAO implements GenericDAO<Account> {
             throw new RuntimeException(e);
         }
     }
+
 
 }
     //insert into "Account" ( name, pay, id_currency, type) VALUES ('john', 300.00, 1, 'Banque');

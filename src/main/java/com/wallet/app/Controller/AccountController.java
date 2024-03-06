@@ -27,7 +27,7 @@ public class AccountController {
         return "Account successfully deleted ";
     }
     @PostMapping("/insert_Account")
-    public Account insertClient(@RequestBody Account toInsert){
+    public Account insertClient(@RequestBody Account toInsert) throws SQLException {
         return accountService.insert(toInsert);
     }
 }
